@@ -1,73 +1,84 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+<section class="contact-us">
+    <div class="container">
+      <div class="row">
+      
+        <div class="col-lg-12">
+          <div class="down-contact">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="sidebar-item contact-form">
+                  <div class="sidebar-heading">
+                    <h2>Send us a message</h2>
+                  </div>
+                  <div class="content">
+                    <form id="contact" action="{{ route('login') }}" method="post">
                         @csrf
+                      <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                          <fieldset>
+                            <input name="username" type="text" id="username" @error('username') is-invalid @enderror placeholder="{{ __('Username or E-Mail') }}" value="{{ old('username') }}" required  autofocus>
 
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username or E-Mail Address') }}</label>
+                            @error('username')
+                            <span role="alert">
+                                <strong style="color: red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
 
-                            <div class="col-md-6">
-                                <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required  autofocus>
-
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                          </fieldset>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                          <fieldset>
+                            <input name="password" type="password" id="password" @error('password') is-invalid @enderror placeholder="{{ __('Password') }}" required autocomplete="current-password">
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            @error('password')
+                            <span role="alert">
+                                <strong style="color: red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                          </fieldset>
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
+                        <div class="col-lg-12">
+                          <fieldset>
+                            <button type="submit" id="form-submit" class="main-button">{{ __('Login') }}</button>
+                          </fieldset>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
+                      </div>
                     </form>
+                  </div>
                 </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="sidebar-item contact-information">
+                  <div class="sidebar-heading">
+                    <h2>contact information</h2>
+                  </div>
+                  <div class="content">
+                    <ul>
+                      <li>
+                        <h5>090-484-8080</h5>
+                        <span>PHONE NUMBER</span>
+                      </li>
+                      <li>
+                        <h5>info@company.com</h5>
+                        <span>EMAIL ADDRESS</span>
+                      </li>
+                      <li>
+                        <h5>123 Aenean id posuere dui, 
+                            <br>Praesent laoreet 10660</h5>
+                        <span>STREET ADDRESS</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </section>
 @endsection

@@ -1,105 +1,125 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+<section class="contact-us">
+    <div class="container">
+      <div class="row">
+      
+        <div class="col-lg-12">
+          <div class="down-contact">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="sidebar-item contact-form">
+                  <div class="sidebar-heading">
+                    <h2>Send us a message</h2>
+                  </div>
+                  <div class="content">
+                    <form id="contact" action="{{ route('register') }}" method="post">
                         @csrf
+                      <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                          <fieldset>
+                            <input name="first_name" type="text" id="first_name" @error('first_name') is-invalid @enderror placeholder="{{ __('First Name') }}" required autocomplete="first_name">
 
-                        <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First name') }}</label>
+                            @error('first_name')
+                            <span role="alert">
+                                <strong style="color: red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
 
-                            <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
-
-                                @error('first_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                          </fieldset>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                          <fieldset>
+                            <input name="last_name" type="text" id="last_name" @error('last_name') is-invalid @enderror placeholder="{{ __('Last Name') }}" required autocomplete="last_name">
 
-                        <div class="form-group row">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last name') }}</label>
+                            @error('last_name')
+                            <span role="alert">
+                                <strong style="color: red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
 
-                            <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
-
-                                @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                          </fieldset>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                          <fieldset>
+                            <input name="username" type="text" id="username" @error('username') is-invalid @enderror placeholder="{{ __('Username') }}" required autocomplete="username">
 
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                                @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('username')
+                            <span role="alert">
+                                <strong style="color: red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        
+                          </fieldset>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                          <fieldset>
+                            <input name="email" type="email" id="email" @error('email') is-invalid @enderror placeholder="{{ __('E-Mail') }}" required autocomplete="email">
+                            
+                            @error('email')
+                            <span role="alert">
+                                <strong style="color: red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                          </fieldset>
                         </div>
+                        <div class="col-md-12 col-sm-12">
+                          <fieldset>
+                            <input name="password" type="password" id="password" @error('password') is-invalid @enderror placeholder="{{ __('Password') }}" required autocomplete="new-password">
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            @error('password')
+                            <span role="alert">
+                                <strong style="color: red;">{{ $message }}</strong>
+                            </span>
+                        @enderror
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                          </fieldset>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                        <div class="col-md-12 col-sm-12">
+                          <fieldset>
+                            <input name="password_confirmation" type="password" id="password-confirm" placeholder="{{ __('Confirm Password') }}" required autocomplete="new-password">
+                          </fieldset>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
+                        <div class="col-lg-12">
+                          <fieldset>
+                            <button type="submit" id="form-submit" class="main-button">{{ __('Register') }}</button>
+                          </fieldset>
                         </div>
+                      </div>
                     </form>
+                  </div>
                 </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="sidebar-item contact-information">
+                  <div class="sidebar-heading">
+                    <h2>contact information</h2>
+                  </div>
+                  <div class="content">
+                    <ul>
+                      <li>
+                        <h5>090-484-8080</h5>
+                        <span>PHONE NUMBER</span>
+                      </li>
+                      <li>
+                        <h5>info@company.com</h5>
+                        <span>EMAIL ADDRESS</span>
+                      </li>
+                      <li>
+                        <h5>123 Aenean id posuere dui, 
+                            <br>Praesent laoreet 10660</h5>
+                        <span>STREET ADDRESS</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </section>
 @endsection
