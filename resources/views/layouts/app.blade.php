@@ -40,7 +40,7 @@ https://templatemo.com/tm-551-stand-blog
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 @auth
-                @if(Request::url() === '/')
+                @if(Request::url() === url('/'))
                 <li class="nav-item active">
                   <a class="nav-link" href="{{ '/' }}">Home
                     <span class="sr-only">(current)</span>
@@ -53,10 +53,10 @@ https://templatemo.com/tm-551-stand-blog
                 </li> 
                 @endif
               <li class="nav-item">
-                <a class="nav-link" href="blog.html">Blog Entries</a>
+                <a class="nav-link" href="#">New Post</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="post-details.html">Post Details</a>
+                <a class="nav-link" href="#">All Posts</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="post-details.html">Profile</a>
@@ -71,12 +71,26 @@ https://templatemo.com/tm-551-stand-blog
               </li>
                 @endauth
                 @guest
+                @if(Request::url() === url('/login'))
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ route('login') }}">Login</a>
+                  <span class="sr-only">(current)</span>
+                </li>
+                @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                   </li>
+                @endif
+                @if(Request::url() === url('/register'))
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ route('register') }}">Register</a>
+                  <span class="sr-only">(current)</span>
+                </li>
+                @else
                   <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">Register</a>
                   </li>
+                  @endif
                 @endguest
             </ul>
           </div>
